@@ -5,6 +5,8 @@ import com.r.b.c.dj.djapp.repository.StockIndexRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -16,6 +18,10 @@ public class StockRepositoryService {
     public int addWeeklyIndex(StockIndex stockIndex) {
         StockIndex sIndex = stockIndexRepository.saveStockIndex(stockIndex);
         return sIndex != null ? 1 : 0;
+    }
+
+    public Collection<StockIndex> addMultipleIndices(List<StockIndex> stockList) {
+        return stockIndexRepository.saveMultipleStockIndices(stockList);
     }
 
     public List<StockIndex> getAllWeeklyIndex() {

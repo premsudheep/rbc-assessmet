@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -20,6 +21,12 @@ public class ApplicationController {
     public ResponseEntity<Object> addWeeklyIndex(@RequestBody StockIndex stockIndex) {
         int i = service.addWeeklyIndex(stockIndex);
         return i==1 ? ResponseEntity.ok("Record has been added"): (ResponseEntity<Object>) ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @RequestMapping(value="/add/records", method= RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> addMultipleIndex(@RequestBody List<StockIndex> stockList) {
+        Collection<StockIndex> list = service.addMultipleIndices(stockList);
+        return list.size() > 0 ? ResponseEntity.ok("Records has been added"): (ResponseEntity<Object>) ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @RequestMapping(value="/get/all", method= RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

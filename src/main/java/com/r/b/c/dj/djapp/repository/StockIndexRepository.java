@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -17,6 +18,10 @@ public class StockIndexRepository {
 
     public StockIndex saveStockIndex(StockIndex stockIndex) {
         return mongoTemplate.insert(stockIndex);
+    }
+
+    public Collection<StockIndex> saveMultipleStockIndices(List<StockIndex> stockList) {
+        return mongoTemplate.insert(stockList, StockIndex.class);
     }
 
     public List<StockIndex> getAllStockIndex() {
