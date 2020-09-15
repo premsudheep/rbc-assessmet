@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,7 +17,7 @@ public class ApplicationController {
     private StockRepositoryService service;
 
     @RequestMapping(value="/add/record", method= RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> addWeeklyIndex(StockIndex stockIndex) {
+    public ResponseEntity<Object> addWeeklyIndex(@RequestBody StockIndex stockIndex) {
         int i = service.addWeeklyIndex(stockIndex);
         return i==1 ? ResponseEntity.ok("Record has been added"): (ResponseEntity<Object>) ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR);
     }
