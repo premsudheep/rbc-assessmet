@@ -43,5 +43,5 @@ GET: http://localhost:8080/get?stockName=AA
 GET: http://localhost:8080/get/all
 ````
 ````
-http://localhost:8080/delete/all
+GET: http://localhost:8080/delete/all
 ````
